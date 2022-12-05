@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=LAPTOP-KJHV80TR\\SQLEXPRESS;Database=DriveInc;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}

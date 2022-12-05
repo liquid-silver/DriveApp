@@ -1,0 +1,17 @@
+﻿@model HomeViewModel
+
+<h1>Объявления</h1>
+@*<h3>@Model.currVehicle</h3>*@
+<div class="row mt-5 mb-2">
+    @{
+        foreach (var ad in Model.ads)
+        {
+            <div class="col-lg-12">
+                <h2>Название</h2>
+                <p>Цена по городу: @ad.priceInside.ToString("c")</p>
+                <p>Цена за городом: @ad.priceOutside.ToString("c")</p>
+                <p>@ad.description</p>
+            </div>
+        }
+    }
+</div>
