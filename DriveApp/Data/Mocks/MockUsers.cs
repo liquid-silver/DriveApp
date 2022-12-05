@@ -19,15 +19,17 @@ namespace DriveApp.Data.Mocks
                 return new List<Users> {
                     new Users {
                         login = "driver",
+                        password = "pass",
                         roleIdNavigation = roles.AllRoles.Last() }
                 };
             }
         }
 
-        public Users GetUserById(int id)
+        public Users GetUserByLogin(string login)
         {
             throw new NotImplementedException();
         }
+
         //private static byte[] GetHash(string password)
         //{
         //    SHA256 shaM = new SHA256Managed();

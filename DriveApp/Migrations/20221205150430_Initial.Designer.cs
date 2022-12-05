@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DriveApp.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20221128174910_Initial")]
+    [Migration("20221205150430_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -209,8 +209,8 @@ namespace DriveApp.Migrations
                     b.Property<string>("login")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("password")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("password")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("roleId")
                         .HasColumnType("int");

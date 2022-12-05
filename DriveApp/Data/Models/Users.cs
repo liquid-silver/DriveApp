@@ -9,7 +9,7 @@ namespace DriveApp.Data.Models
     {
         public int id { get; set; }
         public string login { get; set; }
-        public byte[] password { get; set; }
+        public string password { get; set; }
         public int roleId { get; set; }
 
         public virtual Roles roleIdNavigation { get; set; }

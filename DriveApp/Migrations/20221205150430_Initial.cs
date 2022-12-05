@@ -54,7 +54,7 @@ namespace DriveApp.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     login = table.Column<string>(nullable: true),
-                    password = table.Column<byte[]>(nullable: true),
+                    password = table.Column<string>(nullable: true),
                     roleId = table.Column<int>(nullable: false),
                     roleIdNavigationid = table.Column<int>(nullable: true)
                 },

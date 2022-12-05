@@ -18,6 +18,6 @@ namespace DriveApp.Data.Repository
 
         public IEnumerable<Users> AllUsers => content.Users;
 
-        public Users GetUserById(int id) => content.Users.FirstOrDefault(p => p.id == id);
+        public Users GetUserByLogin(string login) => content.Users.FirstOrDefault(p => p.login == login);
     }
 }

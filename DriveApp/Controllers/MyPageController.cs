@@ -1,4 +1,5 @@
-﻿using DriveApp.Data.Interfaces;
+﻿using DriveApp.Data;
+using DriveApp.Data.Interfaces;
 using DriveApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +12,11 @@ namespace DriveApp.Controllers
     public class MyPageController : Controller
     {
         private readonly IDrivers drivers;
-        public MyPageController(IDrivers drivers)
+        private readonly AppDBContent content;
+        public MyPageController(IDrivers drivers, AppDBContent content)
         {
             this.drivers = drivers;
+            this.content = content;
         }
 
         //public IActionResult Edit(int id)
@@ -21,6 +24,18 @@ namespace DriveApp.Controllers
         //    return ControllerContext.MyDisplayRouteInfo(id);
         //}
 
+        //public void primer(string[] args)
+        //{
+        //    var context = new SchoolContext();
+        //    var studentsWithSameName = context.Students
+        //                                      .Where(s => s.FirstName == GetName())
+        //                                      .ToList();
+        //}
+
+        //public static string GetName()
+        //{
+        //    return "Bill";
+        //}
         public ViewResult Index()
         {
             //var mypage = drivers.GetDriverById();

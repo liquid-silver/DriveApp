@@ -9,6 +9,6 @@ namespace DriveApp.Data.Interfaces
     interface IUsers
     {
         IEnumerable<Users> AllUsers { get; }
-        Users GetUserById(int id);
+        Users GetUserByLogin(string login);
     }
 }

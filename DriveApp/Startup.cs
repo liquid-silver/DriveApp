@@ -1,19 +1,14 @@
 using DriveApp.Data;
 using DriveApp.Data.Repository;
 using DriveApp.Data.Interfaces;
-using DriveApp.Data.Mocks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace DriveApp
 {
@@ -31,6 +26,8 @@ namespace DriveApp
         {
             // services for Identity
             //services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //включаем Identity
+            //services.AddIdentityCore<IdentityUser>();
 
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(confString.GetConnectionString("DefaultConnection")));
             services.AddTransient<IAdvertisements, AdvertisementsRepository>();
@@ -41,6 +38,7 @@ namespace DriveApp
             services.AddTransient<IRoles, RolesRepository>();
             services.AddTransient<ITimetable, TimetableRepository>();
             services.AddTransient<ITrucks, TrucksRepository>();
+            //services.AddTransient<IUserStore<IdentityUser>, FakeUserStore>();
             services.AddTransient<IUsers, UsersRepository>();
             services.AddTransient<IVehicles, VehiclesRepository>();
 
@@ -48,7 +46,14 @@ namespace DriveApp
             //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<AppDBContent>();
 
-            //services.AddControllersWithViews();
+            // установка конфигурации подключения
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new PathString("/Account/Login");
+                });
+
+            services.AddControllersWithViews();
             //services.AddRazorPages();
 
         }
@@ -67,7 +72,7 @@ namespace DriveApp
             }
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
 
             //using (var scope = app.ApplicationServices.CreateScope())
             //{
@@ -79,9 +84,22 @@ namespace DriveApp
             //app.UseHttpsRedirection();
             //app.UseStaticFiles();
 
-            //app.UseRouting();
+            app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();     // авторизация
+
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            //{
+            //    AuthenticationScheme = "MyCookieMiddlewareInstance",
+            //    CookieName = "MyCookieMiddlewareInstance",
+            //    LoginPath = new PathString("/Home/Login/"),
+            //    AccessDeniedPath = new PathString("/Home/AccessDenied/"),
+            //    AutomaticAuthenticate = true,
+            //    AutomaticChallenge = true
+            //});
+
+
 
             app.UseEndpoints(endpoints =>
             {

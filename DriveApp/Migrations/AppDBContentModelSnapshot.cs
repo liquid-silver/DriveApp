@@ -207,8 +207,8 @@ namespace DriveApp.Migrations
                     b.Property<string>("login")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("password")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("password")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("roleId")
                         .HasColumnType("int");

@@ -20,17 +20,6 @@ namespace DriveApp.Data.Repository
 
         public Drivers GetDriverById(int id) => content.Drivers.FirstOrDefault(p => p.id == id);
 
-        //public void primer(string[] args)
-        //{
-        //    var context = new SchoolContext();
-        //    var studentsWithSameName = context.Students
-        //                                      .Where(s => s.FirstName == GetName())
-        //                                      .ToList();
-        //}
-
-        //public static string GetName()
-        //{
-        //    return "Bill";
-        //}
+        
     }
 }
